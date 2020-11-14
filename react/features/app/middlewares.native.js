@@ -1,5 +1,6 @@
 // @flow
 
+import '../advertisement/middleware';
 import '../authentication/middleware';
 import '../mobile/audio-mode/middleware';
 import '../mobile/back-button/middleware';
@@ -14,5 +15,6 @@ import '../mobile/wake-lock/middleware';
 import '../mobile/watchos/middleware';
 import '../share-room/middleware';
 import '../youtube-player/middleware';
+import '../live-stream/middleware';
 
 import './middlewares.any';

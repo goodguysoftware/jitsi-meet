@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
 import { YoutubeLargeVideo } from '../../../youtube-player/components';
+import { LiveStreamPlayer } from '../../../live-stream/components';
 import { Avatar } from '../../avatar';
 import { translate } from '../../i18n';
 import { JitsiParticipantConnectionStatus } from '../../lib-jitsi-meet';
@@ -208,7 +209,8 @@ class ParticipantView extends Component<Props> {
                 ? this.props.testHintId
                 : `org.jitsi.meet.Participant#${this.props.participantId}`;
 
-        const renderYoutubeLargeVideo = _isFakeParticipant && !disableVideo;
+        const renderYoutubeLargeVideo = _isFakeParticipant && !disableVideo && this.props._participantName === 'YouTube';
+        const renderLiveStream = _isFakeParticipant && !disableVideo && this.props._participantName === 'Live Stream';
 
         return (
             <Container
@@ -225,6 +227,7 @@ class ParticipantView extends Component<Props> {
                     value = '' />
 
                 { renderYoutubeLargeVideo && <YoutubeLargeVideo youtubeId = { this.props.participantId } /> }
+                { renderLiveStream && <LiveStreamPlayer videoUrl = { this.props.participantId } /> }
 
                 { !_isFakeParticipant && renderVideo
                     && <VideoTrack
@@ -234,7 +237,7 @@ class ParticipantView extends Component<Props> {
                         zOrder = { this.props.zOrder }
                         zoomEnabled = { this.props.zoomEnabled } /> }
 
-                { !renderYoutubeLargeVideo && !renderVideo
+                { !renderYoutubeLargeVideo && !renderLiveStream && !renderVideo
                     && <View style = { styles.avatarContainer }>
                         <Avatar
                             participantId = { this.props.participantId }
@@ -269,7 +272,7 @@ function _mapStateToProps(state, ownProps) {
     const { disableVideo, participantId } = ownProps;
     const participant = getParticipantById(state, participantId);
     let connectionStatus;
-    let participantName;
+    let participantName = participant && participant.name;
 
     return {
         _connectionStatus:

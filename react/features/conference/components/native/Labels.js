@@ -4,8 +4,11 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { JitsiRecordingConstants } from '../../../base/lib-jitsi-meet';
+import { IconCampaign } from '../../../base/icons';
+import { CircularLabel } from '../../../base/label';
 import { connect } from '../../../base/redux';
 import { ASPECT_RATIO_WIDE } from '../../../base/responsive-ui/constants';
+import { AdvertisementExpandedLabel } from '../../../advertisement';
 import {
     RecordingExpandedLabel
 } from '../../../recording';
@@ -76,6 +79,7 @@ type State = {
     visibleExpandedLabel: ?string
 }
 
+const LABEL_ID_ADVERTISEMENT = 'advertisement';
 const LABEL_ID_QUALITY = 'quality';
 const LABEL_ID_RECORDING = 'recording';
 const LABEL_ID_STREAMING = 'streaming';
@@ -87,6 +91,7 @@ const LABEL_ID_INSECURE_ROOM_NAME = 'insecure-room-name';
  * {@code Label}s.
  */
 const EXPANDED_LABELS = {
+    advertisement: AdvertisementExpandedLabel,
     quality: VideoQualityExpandedLabel,
     recording: {
         component: RecordingExpandedLabel,
@@ -178,6 +183,13 @@ class Labels extends AbstractLabels<Props, State> {
                             this._renderRecordingLabel(
                                 JitsiRecordingConstants.mode.FILE)
                         }
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onLayout = { this._createOnLayout(LABEL_ID_ADVERTISEMENT) }
+                        onPress = { this._createOnPress(LABEL_ID_ADVERTISEMENT) } >
+                        <CircularLabel
+                            icon = { IconCampaign }
+                            style = {{ backgroundColor: '#40b183' }} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         onLayout = { this._createOnLayout(LABEL_ID_STREAMING) }

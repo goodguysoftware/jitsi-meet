@@ -1,5 +1,6 @@
 // @flow
 
+import '../advertisement/reducer';
 import '../authentication/reducer';
 import '../mobile/audio-mode/reducer';
 import '../mobile/background/reducer';
