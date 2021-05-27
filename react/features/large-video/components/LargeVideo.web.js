@@ -2,8 +2,6 @@
 
 import React, { Component } from 'react';
 
-import { Watermarks } from '../../base/react';
-import { Captions } from '../../subtitles/';
 import { connect } from '../../base/redux';
 
 declare var interfaceConfig: Object;
@@ -40,8 +38,6 @@ class LargeVideo extends Component<Props> {
                 </div>
                 <div id = 'etherpad' />
 
-                <Watermarks />
-
                 <div id = 'dominantSpeaker'>
                     <div className = 'dynamic-shadow' />
                     <div id = 'dominantSpeakerAvatarContainer' />
@@ -67,8 +63,6 @@ class LargeVideo extends Component<Props> {
                             playsInline = { true } /* for Safari on iOS to work */ />
                     </div>
                 </div>
-                { interfaceConfig.DISABLE_TRANSCRIPTION_SUBTITLES
-                    || <Captions /> }
             </div>
         );
     }

@@ -495,7 +495,7 @@ export default {
      */
     createInitialLocalTracks(options = {}) {
         const errors = {};
-        const initialDevices = [ 'audio' ];
+        const initialDevices = [];
         const requestedAudio = true;
         let requestedVideo = false;
 

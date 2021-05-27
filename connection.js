@@ -184,17 +184,8 @@ function connect(id, password, roomName) {
  * @returns {Promise<JitsiConnection>}
  */
 export function openConnection({ id, password, retry, roomName }) {
-    const usernameOverride
-        = jitsiLocalStorage.getItem('xmpp_username_override');
-    const passwordOverride
-        = jitsiLocalStorage.getItem('xmpp_password_override');
-
-    if (usernameOverride && usernameOverride.length > 0) {
-        id = usernameOverride; // eslint-disable-line no-param-reassign
-    }
-    if (passwordOverride && passwordOverride.length > 0) {
-        password = passwordOverride; // eslint-disable-line no-param-reassign
-    }
+    id = 'recorder@recorder.meet.jitsi'; // eslint-disable-line no-param-reassign
+    password = 'jibrirecorderpass'; // eslint-disable-line no-param-reassign
 
     return connect(id, password, roomName).catch(err => {
         if (retry) {

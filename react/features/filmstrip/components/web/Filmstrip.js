@@ -343,19 +343,7 @@ class Filmstrip extends Component <Props> {
      * @returns {ReactElement}
      */
     _renderToggleButton() {
-        const icon = this.props._visible ? IconMenuDown : IconMenuUp;
-        const { t } = this.props;
-
-        return (
-            <div className = 'filmstrip__toolbar'>
-                <button
-                    aria-label = { t('toolbar.accessibilityLabel.toggleFilmstrip') }
-                    id = 'toggleFilmstripButton'
-                    onClick = { this._onToolbarToggleFilmstrip }>
-                    <Icon src = { icon } />
-                </button>
-            </div>
-        );
+        return null;
     }
 }
 
